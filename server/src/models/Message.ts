@@ -1,15 +1,34 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, type InferSchemaType } from "mongoose";
 
-const MessageSchema = new Schema(
+const messageSchema = new Schema(
   {
-    username: String,
-    room: String,
-    message: String,
+    username: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    room: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    message: {
+      type: String,
+      required: true,
+      trim: true,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-export default mongoose.models.Message ||
-  mongoose.model("Message", MessageSchema);
+export type MessageDocument = InferSchemaType<typeof messageSchema>;
+
+const Message =
+  mongoose.models.Message ||
+  mongoose.model("Message", messageSchema);
+
+export default Message;

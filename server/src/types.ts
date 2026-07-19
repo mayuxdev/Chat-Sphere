@@ -5,3 +5,10 @@ export interface User {
   username: string;
   room: string;
 }
+
+export interface ChatMessage {
+  username: string;
+  room: string;
+  message: string;
+  createdAt: Date;
+}
