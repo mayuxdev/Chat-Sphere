@@ -6,10 +6,9 @@ export async function getMessages(
   res: Response
 ): Promise<void> {
   try {
-    const { room } = req.params;
-
+    const room = String(req.params.room);
     const messages = await Message.find({
-    //@ts-ignore
+   
       room,
     }).sort({
       createdAt: 1,
